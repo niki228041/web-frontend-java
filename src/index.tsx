@@ -5,8 +5,18 @@ import App from './App';
 import {
   BrowserRouter as Router,
   Route,
-  Link
+  Link,
+  Routes,
+  BrowserRouter,
+  Outlet
 } from "react-router-dom";
+import Header from './Header';
+import AllUnits from './Categories/AllUnits';
+import OperationBar from './OperationBar';
+import Login from './Auth/Login';
+import CreateCategory from './Categories/CreateCategory';
+import { Provider } from 'react-redux';
+import { store } from './app/store';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -14,9 +24,36 @@ const root = ReactDOM.createRoot(
 
 root.render(
   // <React.StrictMode>
-    <Router>
-      <App/>
-    </Router>
+  <Provider store={store}>
+
+  <BrowserRouter>
+    <Routes>
+        <Route path='/' element={
+                <>
+                <div className='flex flex-col' style={{minHeight:"100vh"}}>
+                  <Header/>
+                  {/* <div style={{height:"100vh"}}> */}
+                    <Outlet/>
+                  {/* </div> */}
+                  {/* <div className='mt-auto'>
+                    <Footer/>
+                  </div> */}
+                </div>
+
+                </>
+              }>
+                
+          <Route path='log-in' element={<><Login/></>}   />
+
+          <Route path='home' element={<><OperationBar/><AllUnits/></>}   />
+          <Route path='create-category' element={<CreateCategory/>}   />
+
+        </Route>
+      {/* <App/> */}
+    </Routes>
+  </BrowserRouter>
+  </Provider>
+
   // </React.StrictMode>
 );
 
