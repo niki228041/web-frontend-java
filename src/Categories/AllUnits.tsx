@@ -6,7 +6,7 @@ import {useGetCategoriesQuery} from '../features/apiCategorySlice'
 const OneUnit=(data:Category)=> {
   return (
     <div key={data.id} className=' bg-[#5c5c5c] rounded-xl flex flex-col items-center'>
-        <div className='w-full h-40 rounded-tl-xl rounded-tr-xl' style={{backgroundImage:"url("+temp+")",backgroundSize:"cover",backgroundPosition:"center"}}>
+        <div className='w-full h-40 rounded-tl-xl rounded-tr-xl' style={{backgroundImage:"url(data:image/jpeg;base64,"+data.photo_name+")",backgroundSize:"cover",backgroundPosition:"center"}}>
 
         </div>
         <p className='font-medium text-xl'>{data.name}</p>
@@ -21,6 +21,7 @@ type Category = {
   name: string;
   description: string;
   id: number;
+  photo_name: string;
 };
 
 type CategoryList = Category[];
@@ -32,7 +33,7 @@ const AllUnits=()=> {
   
   return (
     <div className='flex justify-center w-full text-white'>
-        <div className=' grid lg:grid-cols-6 gap-x-16 gap-y-16 sm:grid-cols-3 mt-11 w-full ml-48 mr-48'>
+        <div className=' grid lg:grid-cols-6 gap-x-16 gap-y-16 sm:grid-cols-3 mt-11 w-full lg:ml-48 lg:mr-48 ml-10 mr-10'>
 
         {isSuccess ? data.map((a:any)=>OneUnit(a)) : ""}
             
