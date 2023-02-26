@@ -17,6 +17,7 @@ import Login from './Auth/Login';
 import CreateCategory from './Categories/CreateCategory';
 import { Provider } from 'react-redux';
 import { store } from './app/store';
+import EditCategory from './Categories/EditCategory';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -47,6 +48,7 @@ root.render(
 
           <Route path='home' element={<><OperationBar/><AllUnits/></>}   />
           <Route path='create-category' element={<CreateCategory/>}   />
+          <Route path='edit-category/:categoryId' element={<EditCategory/>}   />
 
         </Route>
       {/* <App/> */}

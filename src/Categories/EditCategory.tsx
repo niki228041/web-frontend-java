@@ -2,20 +2,24 @@ import React from 'react'
 import temp from '../images/temp.png'
 import { Formik ,Form , Field, useFormik} from 'formik'
 import * as yup from 'yup'
-import { useAddCategoryMutation } from '../features/apiCategorySlice'
+import { useEditCategoryMutation, useGetCategoryByIdQuery } from '../features/apiCategorySlice'
 import { basicSchema } from '../schemas'
-import { useNavigate } from 'react-router-dom'
-import { FormValues } from '../types'
+import { useNavigate, useParams } from 'react-router-dom'
+import { Category, EditFormValues, FormValues } from '../types'
 import { toBase64 } from '../WorkWithFiles/CovertToBase64'
 
 
 
-const CreateCategory=()=> {
+const EditCategory=()=> {
 
   
-  const [addCategory,{}] = useAddCategoryMutation();
+  const [editCategory,{}] = useEditCategoryMutation();
+
   const navigate = useNavigate();
-  
+
+  const params = useParams();
+
+  var {data,isSuccess}:{data:Category,isSuccess:any} = useGetCategoryByIdQuery({id:params.categoryId});
 
   const {handleSubmit,touched,errors,handleChange,setFieldValue} = useFormik<FormValues>({
     initialValues: {
@@ -31,23 +35,24 @@ const CreateCategory=()=> {
 
       fileBytes.then((res:any)=>{
         var bytesToRequest = res;
+
         var newCategory = {
+          id:data.id,
           name:values.name,
           description:values.description,
-          photo:bytesToRequest};
+          photo:bytesToRequest
+        };
           
-        addCategory(newCategory);
+        editCategory(newCategory);
         console.log(newCategory);
       })
 
-      
       
       navigate("/home");
     },
     validationSchema: basicSchema,
   });
 
-  
 
   return (
 
@@ -57,13 +62,21 @@ const CreateCategory=()=> {
         <div className=' bg-[#5c5c5c] mt-28 p-3 rounded-xl'>
             <div className=' rounded-full flex mb-4 w-full flex-col'>
                 <span className=' text-[16px] mb-2'>Name</span>
-                <input onChange={handleChange}  name='name' id="name" className='text-xl outline-none rounded-[4px] pl-3 pr-3 text-black ' />
+                {isSuccess ?
+                  <input onChange={handleChange}  name='name' id="name" className='text-xl outline-none rounded-[4px] pl-3 pr-3 text-black ' placeholder={data.name} />
+                  :
+                  ""
+                }
                 {errors.name && touched.name ? <div className=' text-[13px] text-red-500'>{errors.name}</div>  : ""}
             </div>
             
             <div className=' rounded-full flex mb-4 w-full flex-col'>
                 <span className=' text-[16px] mb-2'>Description</span>
-                <input onChange={handleChange} name='description' id="description" className='text-xl outline-none rounded-[4px] pl-3 pr-3 text-black ' />
+                {isSuccess ?
+                  <input onChange={handleChange} name='description' id="description" className='text-xl outline-none rounded-[4px] pl-3 pr-3 text-black ' placeholder={data.description}  />
+                :
+                  ""
+                }
                 {errors.description && touched.description ? <div className=' text-[13px] text-red-500'>{errors.description}</div>  : ""}
             </div>
 
@@ -84,4 +97,4 @@ const CreateCategory=()=> {
   )
 }
 
-export default CreateCategory
+export default EditCategory
