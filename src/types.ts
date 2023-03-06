@@ -20,3 +20,12 @@ export type Category = {
   id: number;
   photo_name: string;
 };
+
+export type Product = {
+  id:number,
+  name:string,
+  descriprion:string,
+  price: number,
+  category_id: number,
+  imagesInBytes:[{}]
+}

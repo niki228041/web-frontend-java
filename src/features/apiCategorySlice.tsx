@@ -56,4 +56,3 @@ export const apiCategorySlice:any = createApi({
 
 
 export const{useGetCategoriesQuery,useAddCategoryMutation,useDeleteCategoryMutation,useEditCategoryMutation,useGetCategoryByIdQuery} = apiCategorySlice;
-

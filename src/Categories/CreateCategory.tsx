@@ -34,7 +34,8 @@ const CreateCategory=()=> {
         var newCategory = {
           name:values.name,
           description:values.description,
-          photo:bytesToRequest};
+          photo:bytesToRequest
+        };
           
         addCategory(newCategory);
         console.log(newCategory);

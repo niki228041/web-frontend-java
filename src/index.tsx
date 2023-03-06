@@ -18,6 +18,7 @@ import CreateCategory from './Categories/CreateCategory';
 import { Provider } from 'react-redux';
 import { store } from './app/store';
 import EditCategory from './Categories/EditCategory';
+import AllProducts from './Products/AllProducts';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
