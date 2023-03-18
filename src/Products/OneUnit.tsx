@@ -3,7 +3,6 @@ import { useState } from 'react'
 
 
 export const OneUnit=(data:Product,setCurrentObject:any,moreOptions:number,deleteProduct:any,navigate:any)=> {
-    console.log(data.id + " || " + moreOptions);
     var img = data.imagesInBytes[0];
 
     return (

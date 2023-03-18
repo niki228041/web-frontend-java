@@ -1,4 +1,5 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react"
+import { ProductCreate } from "../types";
 
 
 export const apiProductSlice:any = createApi({
@@ -15,8 +16,19 @@ export const apiProductSlice:any = createApi({
         }),
         providesTags:result=>['Products']
       }),
+      addProduct:builder.mutation<any,any>({
+        query:(todo)=>({
+          url:'/api/products/add',
+          method:"POST",
+          contentType: 'multipart/form-data',
+          body:todo
+        }),
+        invalidatesTags:['Products']
+      }),
+
+
     })
 })
 
 
-export const{useGetProductsQuery} = apiProductSlice;
+export const{useGetProductsQuery,useAddProductMutation} = apiProductSlice;

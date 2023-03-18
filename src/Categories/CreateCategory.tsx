@@ -43,7 +43,7 @@ const CreateCategory=()=> {
 
       
       
-      navigate("/home");
+      navigate("/categorys");
     },
     validationSchema: basicSchema,
   });

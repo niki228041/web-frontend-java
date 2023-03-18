@@ -3,7 +3,6 @@ import { useState } from 'react'
 
 
 export const OneUnit=(data:Category,setCurrentObject:any,moreOptions:number,deleteCategory:any,navigate:any)=> {
-    console.log(data.id + " || " + moreOptions);
     return (
       <div key={data.id} className=' bg-[#5c5c5c] rounded-xl flex flex-col items-center'>
           <div className='w-full h-40 rounded-tl-xl rounded-tr-xl' style={{backgroundImage:"url(data:image/jpeg;base64,"+data.photo_name+")",backgroundSize:"cover",backgroundPosition:"center"}}>

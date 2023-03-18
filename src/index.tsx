@@ -19,6 +19,7 @@ import { Provider } from 'react-redux';
 import { store } from './app/store';
 import EditCategory from './Categories/EditCategory';
 import AllProducts from './Products/AllProducts';
+import CreateProduct from './Products/CreateProduct';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -47,8 +48,14 @@ root.render(
                 
           <Route path='log-in' element={<><Login/></>}   />
 
-          <Route path='home' element={<><OperationBar/><AllUnits/></>}   />
+          <Route path='categorys' element={<><AllUnits/></>}  />
+
           <Route path='create-category' element={<CreateCategory/>}   />
+          <Route path='create-product' element={<CreateProduct/>}   />
+          
+          
+          <Route path='products' element={<><AllProducts/></>}   />
+          
           <Route path='edit-category/:categoryId' element={<EditCategory/>}   />
 
         </Route>

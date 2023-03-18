@@ -5,6 +5,14 @@ export interface FormValues{
   photo:File|null
 }
 
+export interface FormProductCreate{
+  name:string,
+  description:string,
+  photos:Array<File>,
+  price:number,
+  category_id:number
+}
+
 
 export interface EditFormValues{
   id:number,
@@ -29,3 +37,21 @@ export type Product = {
   category_id: number,
   imagesInBytes:[{}]
 }
+
+export type ProductCreate = {
+  name:String,
+  descriprion:String,
+  price: Number,
+  category_id: Number,
+  images:Array<File>
+}
+
+// {
+//   "name": "string",
+//   "descriprion": "string",
+//   "price": 0,
+//   "category_id": 0,
+//   "imagesInBytes": [
+//     "string"
+//   ]
+// }

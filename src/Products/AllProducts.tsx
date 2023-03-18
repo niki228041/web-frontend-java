@@ -6,6 +6,7 @@ import { Product } from '../types'
 import { OneUnit } from './OneUnit'
 import { useNavigate } from 'react-router-dom'
 import { useGetProductsQuery } from '../features/apiProductSlice'
+import OperationBar from '../OperationBar'
 
 
 
@@ -33,6 +34,8 @@ const AllProducts = ()=> {
   }
 
   return (
+    <>
+    {OperationBar("Create Product","create-product")}
     <div className='flex justify-center w-full text-white'>
         <div className=' grid lg:grid-cols-6 gap-x-16 gap-y-16 sm:grid-cols-3 mt-11 w-full lg:ml-48 lg:mr-48 ml-10 mr-10'>
 
@@ -41,7 +44,7 @@ const AllProducts = ()=> {
             
         </div>
     </div>
-    
+    </>
   )
 }
 
