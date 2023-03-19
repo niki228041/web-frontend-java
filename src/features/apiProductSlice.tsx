@@ -25,10 +25,19 @@ export const apiProductSlice:any = createApi({
         }),
         invalidatesTags:['Products']
       }),
+      getProductById:builder.query<any,any>({
+        query:(todo)=>({
+          url:'/api/products/getProductById',
+          method:"POST",
+          contentType: 'application/json',
+          body:todo
+        }),
+        providesTags:result=>['Products']
+      }),
 
 
     })
 })
 
 
-export const{useGetProductsQuery,useAddProductMutation} = apiProductSlice;
+export const{useGetProductsQuery,useAddProductMutation,useGetProductByIdQuery} = apiProductSlice;

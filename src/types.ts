@@ -38,6 +38,15 @@ export type Product = {
   imagesInBytes:[{}]
 }
 
+export type ProductItem = {
+  id:number,
+  name:string,
+  descriprion:string,
+  price: number,
+  category_id: number,
+  images:String[]
+}
+
 export type ProductCreate = {
   name:String,
   descriprion:String,

@@ -20,6 +20,7 @@ import { store } from './app/store';
 import EditCategory from './Categories/EditCategory';
 import AllProducts from './Products/AllProducts';
 import CreateProduct from './Products/CreateProduct';
+import { OneProduct } from './Products/OneProduct';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -54,7 +55,9 @@ root.render(
           <Route path='create-product' element={<CreateProduct/>}   />
           
           
-          <Route path='products' element={<><AllProducts/></>}   />
+          <Route path='products' element={<><AllProducts/></>}  >
+          </Route>
+          <Route path="products/product/:productId" element={<OneProduct/>} />
           
           <Route path='edit-category/:categoryId' element={<EditCategory/>}   />
 
