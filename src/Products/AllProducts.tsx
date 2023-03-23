@@ -5,8 +5,8 @@ import { boolean } from 'yup'
 import { Product } from '../types'
 import { OneUnit } from './OneUnit'
 import { useNavigate } from 'react-router-dom'
-import { useGetProductsQuery } from '../features/apiProductSlice'
-import OperationBar from '../OperationBar'
+import { useDeleteProductByIdMutation, useGetProductsQuery } from '../features/apiProductSlice'
+import OperationBar from '../elements/OperationBar'
 
 
 
@@ -15,6 +15,7 @@ type ProductList = Product[];
 const AllProducts = ()=> {
   // const getCategories = useAppSelector((state)=>state);
   const {data,isSuccess}:{data:ProductList,isSuccess:any} = useGetProductsQuery();
+
 
   // :{data:GetCategoriesQueryData,isSuccess:any}
 

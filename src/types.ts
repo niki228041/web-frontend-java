@@ -55,6 +55,10 @@ export type ProductCreate = {
   images:Array<File>
 }
 
+export type ProductIdRequest = {
+  id:String
+}
+
 // {
 //   "name": "string",
 //   "descriprion": "string",

@@ -10,9 +10,9 @@ import {
   BrowserRouter,
   Outlet
 } from "react-router-dom";
-import Header from './Header';
+import Header from './elements/Header';
 import AllUnits from './Categories/AllUnits';
-import OperationBar from './OperationBar';
+import OperationBar from './elements/OperationBar';
 import Login from './Auth/Login';
 import CreateCategory from './Categories/CreateCategory';
 import { Provider } from 'react-redux';
@@ -21,6 +21,7 @@ import EditCategory from './Categories/EditCategory';
 import AllProducts from './Products/AllProducts';
 import CreateProduct from './Products/CreateProduct';
 import { OneProduct } from './Products/OneProduct';
+import SmollUpBar from './elements/SmollUpBar';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -57,7 +58,7 @@ root.render(
           
           <Route path='products' element={<><AllProducts/></>}  >
           </Route>
-          <Route path="products/product/:productId" element={<OneProduct/>} />
+          <Route path="products/product/:productId" element={<><SmollUpBar/><OneProduct/></>} />
           
           <Route path='edit-category/:categoryId' element={<EditCategory/>}   />
 

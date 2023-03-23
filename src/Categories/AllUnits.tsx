@@ -6,7 +6,7 @@ import { boolean } from 'yup'
 import { Category } from '../types'
 import { OneUnit } from './OneUnit'
 import { useNavigate } from 'react-router-dom'
-import OperationBar from '../OperationBar'
+import OperationBar from '../elements/OperationBar'
 
 
 

@@ -4,12 +4,12 @@ import { useState } from 'react'
 
 export const OneUnit=(data:Category,setCurrentObject:any,moreOptions:number,deleteCategory:any,navigate:any)=> {
     return (
-      <div key={data.id} className=' rounded-xl flex flex-col items-center '>
+      <div key={data.id} className=' rounded-xl flex flex-col items-center text-black'>
           <div className='w-full h-40 rounded-xl ' style={{backgroundImage:"url(data:image/jpeg;base64,"+data.photo_name+")",backgroundSize:"cover",backgroundPosition:"center"}}>
   
           </div>
           <p className='font-medium text-xs mt-4'>{data.name}</p>
-          <p className=' font-normal p-2 text-xs'>{data.description}</p>
+          <p className=' font-normal p-2 text-xs  h-[39px]'>{data.description}</p>
           {
             moreOptions == data.id ?
             (
@@ -20,7 +20,7 @@ export const OneUnit=(data:Category,setCurrentObject:any,moreOptions:number,dele
             </div>
             )
             :
-            <button onClick={()=>{if(moreOptions != data.id){setCurrentObject(data.id)}else{setCurrentObject(-1)} }} className=' outline-2 outline-white outline rounded-sm pr-3 pl-3 pt-1 pb-1 text-xs mt-3 mb-3 hover:bg-white hover:text-black duration-150 '>See More</button>
+            <button onClick={()=>{if(moreOptions != data.id){setCurrentObject(data.id)}else{setCurrentObject(-1)} }} className=' outline-2 outline-green-600 outline rounded-sm pr-3 pl-3 pt-1 pb-1 text-xs mt-3 mb-3 hover:bg-green-600 hover:text-white duration-150 '>See More</button>
 
           }
       </div>

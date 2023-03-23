@@ -65,7 +65,7 @@ const CreateProduct=()=> {
       var newProduct = {
         name:values.name,
         descriprion:values.description,
-        price: Number.parseInt(values.price.toString()),
+        price: Number.parseFloat(values.price.toString()),
         category_id: Number.parseInt(category_id.toString())
       };
 
