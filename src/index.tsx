@@ -10,6 +10,7 @@ import {
   BrowserRouter,
   Outlet
 } from "react-router-dom";
+
 import Header from './elements/Header';
 import AllUnits from './Categories/AllUnits';
 import OperationBar from './elements/OperationBar';
@@ -22,6 +23,8 @@ import AllProducts from './Products/AllProducts';
 import CreateProduct from './Products/CreateProduct';
 import { OneProduct } from './Products/OneProduct';
 import SmollUpBar from './elements/SmollUpBar';
+
+import {Login_Google} from './Auth/index'
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -48,7 +51,7 @@ root.render(
                 </>
               }>
                 
-          <Route path='log-in' element={<><Login/></>}   />
+          <Route path='log-in' element={<><Login_Google/></>}   />
 
           <Route path='categorys' element={<><AllUnits/></>}  />
 

@@ -8,8 +8,13 @@ import { ProductIdRequest } from '../types';
 import { useDispatch } from 'react-redux';
 
 import '../index.css'
-  
-  
+import {ModalDelete} from './ModalDelete';
+
+
+// import Swiper core and required modules
+import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/swiper.min.css';
 
 export const OneProduct=()=> {
 
@@ -20,7 +25,6 @@ export const OneProduct=()=> {
   let idRequest:ProductIdRequest = {id:params.productId!};
 
   let {data,isSuccess,isLoading,error}:{data:ProductItem,isSuccess:Boolean,isLoading:Boolean,error:any} = useGetProductByIdQuery(idRequest);
-
   let {data:category,isSuccess:categoryIsSuccess}:{data:Category,isSuccess:Boolean}= useGetCategoryByIdQuery({id: isSuccess ? data.category_id : null});
   
   const [mainImage, setMainImage] = useState<String>("");
@@ -69,29 +73,55 @@ export const OneProduct=()=> {
     navigate("/products");
   }
 
+  const handleChangeSwiperImg=(it:number)=>{
+    var img = document.getElementById(it.toString());
+    var mainImg:any = document.getElementById("mainImg")
+    mainImg.style.backgroundImage = img?.style.backgroundImage;
+
+  }
+
   if (isLoading) return <div >Loading...</div>;
   if (error) return <div>Empty or can`t connect to server</div>;
 
+  
   
 
     return (
       <>
         <div>
+          <div className='m-auto flex justify-center border-2 '>
+          
+          
+          </div>
+          
             <div className="flex ">
+              
               <div className="flex flex-col items-center justify-center w-2/5 p-4 ">
-                {mainImage != "" ? 
-                <img
-                  src={"data:image/jpeg;base64,"+ mainImage}
-                  alt="MacBook Pro"
-                  className="max-w-full"
-                />
-                :""        
-                }
+                
 
               
+              
 
-                <div className="flex flex-row justify-center items-center mt-2">
-                  {isSuccess ? data.images.map((thumb, index) => (
+              {isSuccess ?
+              <Swiper
+               spaceBetween={50}
+               slidesPerView={1}
+               className='flex justify-center items-center w-full h-full'
+               onSlideChange={(sw)=>console.log(setSelectedThumb(sw.realIndex+1))}
+              >
+
+              {data.images.map((img:any,it:number=0) => (
+                
+                <SwiperSlide key={it++} virtualIndex={it-1} className='flex justify-center items-center rounded-xl'>
+                  <div className=' h-full rounded-xl' id='mainImg' style={{backgroundImage: `url(${'data:image/gif;base64,'+ img})`,backgroundSize:"contain",backgroundRepeat:"no-repeat",backgroundPosition:"center"}}>
+                  </div>
+                </SwiperSlide>
+              ))}
+              </Swiper>
+              :""
+              }
+                  <div className="flex flex-row justify-center items-center mt-2">
+                    {isSuccess ? data.images.map((thumb, index) => (
                     <img
                       key={index}
                       src={"data:image/jpeg;base64,"+ thumb}
@@ -104,6 +134,11 @@ export const OneProduct=()=> {
                   )) :""}
 
                 </div>
+
+                
+
+              
+                
               </div>
               <div className="flex flex-col justify-between p-4 w-3/5">
                 <div className="flex flex-col">
@@ -126,8 +161,12 @@ export const OneProduct=()=> {
                       <li>Two Thunderbolt 3 ports</li>
                       <li>Backlit Keyboard - US English</li>
                     </ul></div> */}
+
+                    
               <div className="mb-4">
                 <h3 className="text-lg font-bold mb-2">Company Information</h3>
+
+                
                   
                 <img
                     src={categoryIsSuccess ? "data:image/jpeg;base64,"+ category.photo_name :""}
@@ -158,9 +197,8 @@ export const OneProduct=()=> {
                 </button>
               </div>
               <div>
-                <button onClick={()=>{handleDelete()}} className="text-sm rounded-lg px-4 py-2 font-semibold">
-                  Delete
-                </button>
+                
+                <ModalDelete id={1} title="Delete" text="Are you sure, that you want to delete this Product?" deleteFunc={handleDelete} />
 
                 <button className="bg-green-500 ml-3 text-white rounded-lg px-4 py-2 font-semibold">
                   Add to Cart
@@ -171,6 +209,7 @@ export const OneProduct=()=> {
           </div>
         </div>
       </div>
+      
         </>
       
     )

@@ -73,15 +73,6 @@ const userSlice = createSlice(
     initialState,
     reducers:
     {
-        // incremented(state)
-        // {
-        //     //можна міняти стейт без копіювання  (state...)=не потрібно
-        //     state.value++;
-        // },
-        // amountAdded(state,action: PayloadAction<number>){
-        //     state.value += action.payload;
-        // }
-
         login(state,action: PayloadAction<any>){
             state.user = action.payload
         },

@@ -2,85 +2,71 @@ import { useFormik } from 'formik';
 import React, { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { loginSchema } from '../schemas';
+import { useLoginUserMutation, useRegisterUserMutation } from '../features/apiUserSlice';
 // import "toastify-js/src/toastify.css"
-
+import { SetAccessToken } from '../api/jwtDecodeToken';
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
+// import axiosInstance from '../features/TokenTry';
 
 interface FormValues{
   email:string,
-  password:string
+  password:string,
+  reCaptchaToken:string
+}
+
+interface ILogin{
+  email:string,
+  password:string,
+  reCaptchaToken:string
 }
 
 const Login = () => {
 
-    // const dispatch = useDispatch();
-    // const navigate = useNavigate();
+  const [userLogin,{}] = useLoginUserMutation();
+  const { executeRecaptcha } = useGoogleReCaptcha();
 
-    // const user:any = useSelector((state:any)=>state.user);
-
-
-
-    // const handleLoginWithGoogleSuccess=(res:any)=>{
-    //   var requestLogin:IRequestToGoogleLogin = {provider:"Google",token:res.credential};
-
-    //   dispatch(googleLogin(requestLogin));
-    //   navigate("/models");
-    // }
-
-    // const handleLogin=(data:React.FormEvent<HTMLFormElement>)=>{
-    //   data.preventDefault();
-    //   var curentData = new FormData(data.currentTarget);
-      
-    //   var Email = curentData?.get("Email")?.toString()!;
-    //   var Password = curentData?.get("Password")?.toString()!;
-
-    //   var loginRequest:ILogin = {email:Email,password:Password};
-
-    //   dispatch(login(loginRequest));
-    //   navigate("/models");
-    // }
-
-
-    // useEffect(() => {
-
-    //     let clientId = "1077056982647-chirn7dlqjl0ru51a94d4sjt385tc3gi.apps.googleusercontent.com";
-
-    //     if (typeof window === "undefined" || !window.google) {
-    //       return;
-    //     }
-
-    //     window.google.accounts!.id.initialize({
-    //         client_id:clientId,
-    //         callback: handleLoginWithGoogleSuccess,
-    //     });
-    //     var opts:GsiButtonConfiguration = {type:"standard",theme:"outline",size:"large"};
-
-    //     window.google.accounts!.id.renderButton(document.getElementById("loginGoogleBtn")!,
-    //       opts);
-        
-        
-    //   }, []);
-
-
+  // // делаем POST запрос
+  // axiosInstance.post('/api/products/getProductById',{id:3})
+  // .then(response => {
+  //   console.log(response);
+  // })
+  // .catch(error => {
+  //   console.error(error);
+  // });
 
 
   const {handleSubmit,touched,errors,handleChange} = useFormik<FormValues>({
     initialValues: {
       email: '',
       password:'',
+      reCaptchaToken:''
     },
-    onSubmit: values => {
-      console.log(values);
-      
-      // var newCategory = {email:values.email,password:values.password};
-      // addCategory(newCategory);
+    onSubmit:async values => {
+
+      if(!executeRecaptcha)
+        return;
+      //Перевірка чи пройшов перевірку гугл, користувач, чи не є він бот  
+      values.reCaptchaToken=await executeRecaptcha();
+
+      const user:ILogin = {email:values.email,password:values.password,reCaptchaToken:values.reCaptchaToken};
+
+      console.log(user);
+
+      userLogin(user).then((response:any)=>{
+        console.log(response.data.token);
+        SetAccessToken(response.data.token);
+      });
     },
     validationSchema: loginSchema,
   });
 
 
+
+
   return (
     <>
  {/* onSubmit={handleLogin} */}
+      
       <form onSubmit={handleSubmit}>
         <div className=' bg-[#5c5c5c] grid grid-cols-1 xl:w-[400px] sm:w-[500px] m-auto rounded-xl text-fontYellowDark p-7 mt-28 text-white'>
           <div className='rounded-full text-[35px] mb-5 m-auto'>
