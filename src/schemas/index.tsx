@@ -21,3 +21,14 @@ export const loginSchema = yup.object().shape({
     // .matches(passwordRules,"not strong enough")
     password:yup.string().min(3,"min 3 chars").required("Required"),
 })
+
+export const regSchema = yup.object().shape({
+    email:yup.string().email("Not valid email").required("Required"),
+    // .matches(passwordRules,"not strong enough")
+    password:yup.string().min(3,"min 3 chars").required("Required"),
+    password_repeat:yup.string()
+    .required('Confirm password is required')
+    .oneOf([yup.ref('password')], 'Passwords do not match'),
+    first_name:yup.string().min(3,"min 3 chars").required("Required"),
+    last_name:yup.string().min(3,"min 3 chars").required("Required"),
+})

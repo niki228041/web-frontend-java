@@ -23,6 +23,8 @@ import AllProducts from './Products/AllProducts';
 import CreateProduct from './Products/CreateProduct';
 import { OneProduct } from './Products/OneProduct';
 import SmollUpBar from './elements/SmollUpBar';
+import Registration from './Auth/Registration';
+import { Reg_Google } from './Auth/RegistationGoogle';
 
 import {Login_Google} from './Auth/index'
 
@@ -41,6 +43,7 @@ root.render(
                 <div className='flex flex-col' style={{minHeight:"100vh"}}>
                   <Header/>
                   {/* <div style={{height:"100vh"}}> */}
+
                     <Outlet/>
                   {/* </div> */}
                   {/* <div className='mt-auto'>
@@ -51,7 +54,9 @@ root.render(
                 </>
               }>
                 
-          <Route path='log-in' element={<><Login_Google/></>}   />
+          <Route path='registration' element={<Reg_Google/>} />
+
+          <Route path='log-in' element={<><Login_Google/></>}  />
 
           <Route path='categorys' element={<><AllUnits/></>}  />
 

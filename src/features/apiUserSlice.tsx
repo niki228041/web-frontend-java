@@ -7,13 +7,13 @@ export const apiUserSlice:any = createApi({
     tagTypes:['Users'],
 
     endpoints:(builder)=>({
-      registerUser:builder.mutation<any,any>({
-        query:(todo)=>({
-          url:'/account/register',
-          method:"POST",
-          body:todo
-        }),
-        invalidatesTags:['Users']
+    registerUser:builder.mutation<any,any>({
+      query:(todo)=>({
+        url:'/account/register',
+        method:"POST",
+        body:todo
+      }),
+      invalidatesTags:['Users']
     }),
     loginUser:builder.mutation<any,any>({
       query:(todo)=>({
