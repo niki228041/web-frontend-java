@@ -4,9 +4,10 @@ import axios from "axios"
 import parseJwt from "../api/jwtDecodeToken";
 
 import { SetAccessToken,SetRefreshToken } from "../api/jwtDecodeToken";
+import { APP_ENV } from "../env";
 
 
-const baseURL ='http://localhost:8083';
+const baseURL =APP_ENV;
 
 // interface UserState{
 //     user:any;

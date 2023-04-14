@@ -8,7 +8,7 @@ export const OneUnit=(data:Product,navigate:any)=> {
 
     return (
       <div key={data.id} className='rounded-xl flex flex-col items-center text-black'>
-          <div className='w-full h-40 rounded-xl shadow-black flex justify-center hover:bg-slate-100' style={{backgroundImage:"url(data:image/jpeg;base64,"+img+")",backgroundSize:"cover",backgroundPosition:"center"}}>
+          <div className='w-full h-40 rounded-xl shadow-black flex justify-center hover:bg-slate-100' style={{backgroundImage:"url(data:image/jpeg;base64,"+img+")",backgroundSize:"contain",backgroundPosition:"center",backgroundRepeat:"no-repeat"}}>
           
           </div>
 

@@ -6,6 +6,8 @@ import { useLoginUserMutation, useRegisterUserMutation } from '../features/apiUs
 // import "toastify-js/src/toastify.css"
 import { SetAccessToken } from '../api/jwtDecodeToken';
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
+import GoogleAuth from './Google/GoogleAuth';
+import { GoogleLoginAuth } from './Google/GoogleLoginAuth';
 // import axiosInstance from '../features/TokenTry';
 
 interface FormValues{
@@ -88,11 +90,13 @@ const Login = () => {
 
             <button type='submit' className=' outline-2 outline-white outline rounded-sm pr-3 pl-3 pt-1 pb-1 text-sx mt-3 mb-5 hover:bg-white hover:text-black duration-150 '>Sign In</button>
             
-            <button className=' outline-2 outline-white outline rounded-sm pr-3 pl-3 pt-1 pb-1 text-sx mt-3 mb-5 hover:bg-white hover:text-black duration-150 '>
-                <div id="loginGoogleBtn" className=' text-black'>
-                    Sign in with Google 🚀
-                </div>
-            </button>
+            {/* <button className=' outline-2 outline-white outline rounded-sm pr-3 pl-3 pt-1 pb-1 text-sx mt-3 mb-5 hover:bg-white hover:text-black duration-150 '> */}
+                {/* <div id="loginGoogleBtn" className=' text-black'>
+                    
+                </div> */}
+                {/* Google Auth 🚀 */}
+                <GoogleLoginAuth/>
+            {/* </button> */}
             
           </div>
 

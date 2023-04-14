@@ -23,10 +23,17 @@ export const apiUserSlice:any = createApi({
       }),
       invalidatesTags:['Users']
     }),
-
+    loginGoogleUser:builder.mutation<any,any>({
+      query:(todo)=>({
+        url:'/account/google-auth',
+        method:"POST",
+        body:todo
+      }),
+      invalidatesTags:['Users']
+    }),
 
     })
 })
 
 
-export const{useRegisterUserMutation,useLoginUserMutation} = apiUserSlice;
+export const{useRegisterUserMutation,useLoginUserMutation,useLoginGoogleUserMutation} = apiUserSlice;

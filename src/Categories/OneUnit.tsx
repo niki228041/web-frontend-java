@@ -5,7 +5,7 @@ import { useState } from 'react'
 export const OneUnit=(data:Category,setCurrentObject:any,moreOptions:number,deleteCategory:any,navigate:any)=> {
     return (
       <div key={data.id} className=' rounded-xl flex flex-col items-center text-black'>
-          <div className='w-full h-40 rounded-xl ' style={{backgroundImage:"url(data:image/jpeg;base64,"+data.photo_name+")",backgroundSize:"cover",backgroundPosition:"center"}}>
+          <div className='w-full h-40 rounded-xl ' style={{backgroundImage:"url(data:image/jpeg;base64,"+data.photo_name+")",backgroundSize:"contain",backgroundPosition:"center",backgroundRepeat:"no-repeat"}}>
   
           </div>
           <p className='font-medium text-xs mt-4'>{data.name}</p>
