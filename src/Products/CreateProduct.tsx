@@ -70,9 +70,11 @@ const CreateProduct=()=> {
       };
 
       const formData = new FormData();
+
       Object.entries(newProduct).forEach(([key, value]) => {
         formData.append(key, value.toString());
       });
+      
       //formData.append('images', files[0]);
 
       for(let i = 0; i < file_array.length; i++) {

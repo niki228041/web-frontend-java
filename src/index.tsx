@@ -27,6 +27,7 @@ import Registration from './Auth/Registration';
 import { Reg_Google } from './Auth/RegistationGoogle';
 
 import {Login_Google} from './Auth/index'
+import Profile from './Profile/Profile';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -59,6 +60,7 @@ root.render(
           <Route path='log-in' element={<><Login_Google/></>}  />
 
           <Route path='categorys' element={<><AllUnits/></>}  />
+          <Route path='profile' element={<><Profile/></>}  />
 
           <Route path='create-category' element={<CreateCategory/>}   />
           <Route path='create-product' element={<CreateProduct/>}   />

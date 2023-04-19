@@ -48,7 +48,7 @@ const EditCategory=()=> {
       })
 
       
-      navigate("/home");
+      navigate("/categorys");
     },
     validationSchema: basicSchema,
   });

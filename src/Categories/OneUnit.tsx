@@ -9,7 +9,7 @@ export const OneUnit=(data:Category,setCurrentObject:any,moreOptions:number,dele
   
           </div>
           <p className='font-medium text-xs mt-4'>{data.name}</p>
-          <p className=' font-normal p-2 text-xs  h-[39px]'>{data.description}</p>
+          <p className=' font-normal p-2 text-xs  h-[39px]  overflow-hidden '>{data.description}</p>
           {
             moreOptions == data.id ?
             (

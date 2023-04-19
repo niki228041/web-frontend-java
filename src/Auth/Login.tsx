@@ -26,6 +26,7 @@ const Login = () => {
 
   const [userLogin,{}] = useLoginUserMutation();
   const { executeRecaptcha } = useGoogleReCaptcha();
+  const navigate = useNavigate();
 
   // // делаем POST запрос
   // axiosInstance.post('/api/products/getProductById',{id:3})
@@ -57,6 +58,7 @@ const Login = () => {
       userLogin(user).then((response:any)=>{
         console.log(response.data.token);
         SetAccessToken(response.data.token);
+        navigate("/products");
       });
     },
     validationSchema: loginSchema,
